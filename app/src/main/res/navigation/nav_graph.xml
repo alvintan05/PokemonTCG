@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/setListFragment">
+
+    <fragment
+        android:id="@+id/setListFragment"
+        android:name="com.aldev.pokemontcg.ui.sets.SetListFragment"
+        android:label="Set List"
+        tools:layout="@layout/fragment_set_list">
+        <action
+            android:id="@+id/action_setListFragment_to_pokemonCardListFragment"
+            app:destination="@id/pokemonCardListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonCardListFragment"
+        android:name="com.aldev.pokemontcg.ui.cards.PokemonCardListFragment"
+        android:label="{setName}"
+        tools:layout="@layout/fragment_pokemon_card_list">
+        <action
+            android:id="@+id/action_pokemonCardListFragment_to_pokemonCardDetailFragment"
+            app:destination="@id/pokemonCardDetailFragment" />
+        <argument
+            android:name="setName"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="setId"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonCardDetailFragment"
+        android:name="com.aldev.pokemontcg.ui.detailcard.PokemonCardDetailFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_pokemon_card_detail">
+        <argument
+            android:name="pokemonCard"
+            app:argType="com.aldev.pokemontcg.data.source.remote.response.Card" />
+        <argument
+            android:name="title"
+            android:defaultValue="null"
+            app:argType="string" />
+    </fragment>
+</navigation>
